@@ -1,0 +1,8 @@
+Trajectory files
+d_X_k_Y
+X is the compartment diameter in micrometers
+Y is the exchange rate in /s
+Each trajectory file contains the structure "positions" with fields:
+  R (trajectory)
+  opt (settings used for the simulation)
+  
