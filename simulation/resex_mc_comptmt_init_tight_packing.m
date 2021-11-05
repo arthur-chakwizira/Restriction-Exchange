@@ -16,8 +16,8 @@ N2 = round(opt.sim_opt.N_part*opt.sim_opt.f_2);
 N_cells = 9;
 max_dim.x = [0, 0]; %unit cell boundary in x-direction
 max_dim.y = [1, 1]; %unit cell boundary in y-direction
-cell_sep = 2.5e-6;
-if cell_sep < sqrt(2*opt.sim_opt.n_dim*opt.sim_opt.D)
+cell_sep = 3e-6;
+if cell_sep < sqrt(2*opt.sim_opt.n_dim*opt.sim_opt.D_1)
 center_shift = r + cell_sep;
 cell_room = 2*r + cell_sep; %space taken up by one cell
 

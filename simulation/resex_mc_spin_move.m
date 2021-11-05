@@ -10,8 +10,8 @@ function [R_new, states_new, sim_data] = resex_mc_spin_move(sim_data, opt)
 
 R_old = sim_data.R_old; %previous positions
 states_old = sim_data.states_old; %previous states
-sigma_1 = sim_data.dr.sigma_1; %jump size intracellular
-sigma_2 = sim_data.dr.sigma_2; %jump size extracellular
+dr_1 = sim_data.dr.dr_1; %jump size intracellular
+dr_2 = sim_data.dr.dr_2; %jump size extracellular
 max_x = sim_data.max_dim.x; %maximum dimensions of substrate (boundaries)
 max_y = sim_data.max_dim.y;
 
@@ -21,6 +21,8 @@ y_length = max_y(2) - max_y(1);
 
 R_old_moved = R_old; %initialise new positions
 
+
+%{
 R1 = R_old(states_old == 1, :); %previous intracellular positions
 N1 = size(R1, 1);
 R1_moved = R1 + randn(N1,2)*sigma_1;
@@ -28,6 +30,26 @@ R1_moved = R1 + randn(N1,2)*sigma_1;
 R2 = R_old(states_old == 2, :); %previous extracellular positions
 N2 = size(R2, 1);
 R2_moved = R2 + randn(N2,2)*sigma_2;
+%}
+%---------------------------------
+R1 = R_old(states_old == 1, :); %previous intracellular positions
+N1 = size(R1, 1);
+x1_1 = 2*dr_1*rand(N1,1) - dr_1 +  R1(1:N1,1); %select random x-coordinate in [x0-dr_1, x0+dr_1]
+rand_signs = randi(2, [N1,1])-1; rand_signs(~rand_signs) = -1;%generate random signs to allow calculation of +/-sqrt(.)
+y1_1 = rand_signs.*sqrt(dr_1^2 - (x1_1 - R1(1:N1,1)).^2) + R1(1:N1,2);%calculate y-coordinate such that [x1_1,y1_1] lies on circle of radius dr_1
+R1_moved = [x1_1, y1_1]; %then we have moved our spins in a random direction with a fixed jump length
+
+
+R2 = R_old(states_old == 2, :); %previous extracellular positions
+N2 = size(R2, 1);
+x1_2 = 2*dr_2*rand(N2,1) - dr_2 +  R2(1:N2,1); %select random x-coordinate in [x0-dr_2, x0+dr_2]
+rand_signs = randi(2, [N2,1])-1; rand_signs(~rand_signs) = -1;%generate random signs to allow calculation of +/-sqrt(.)
+y1_2 = rand_signs.*sqrt(dr_2^2 - (x1_2 - R2(1:N2,1)).^2) + R2(1:N2,2);%calculate y-coordinate such that [x1_2,y1_2] lies on circle of radius dr_2
+R2_moved = [x1_2, y1_2];%then we have moved our spins in a random direction with a fixed jump length
+%---------------------------------
+
+
+
 
 R_old_moved(states_old == 1, :) = R1_moved; %update position array
 R_old_moved(states_old == 2, :) = R2_moved;

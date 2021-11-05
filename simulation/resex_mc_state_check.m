@@ -51,12 +51,10 @@ for k = 1:size(x_centres, 1)
         
         transmitted_into_1 = was_extra & allowed_into_1; %allow particles satisfying the condition above to enter this cell
         states_new(transmitted_into_1) = 1;%and change their states to intracellular
-        
         R_new(transmitted_into_1, :) = R_old_moved(transmitted_into_1, :); %accept new positions, no need for complex rescaling
         
         rejected_from_1 = was_extra & ~allowed_into_1; %these particles are not allowed to complete transition into this cell
         states_new(rejected_from_1) = 2; %restore their states to  extracellular
-        
         R_new(rejected_from_1, :) = R_old(rejected_from_1, :); %return particles to previous positions, skip compex rescaling
     end
 end

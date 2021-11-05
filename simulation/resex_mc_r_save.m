@@ -13,7 +13,7 @@ N1 = round(opt.sim_opt.f_1*opt.sim_opt.N_part); %intracellular population
 N2 = round(opt.sim_opt.f_2*opt.sim_opt.N_part); %extracellular population
 D_1 = opt.sim_opt.D_1; %intracellular diffusivity
 D_2 = opt.sim_opt.D_2; %extracellular diffusivity
-% n_dim = opt.sim_opt.n_dim; %number of dimensions, 2
+n_dim = opt.sim_opt.n_dim; %number of dimensions, 2
 r = opt.sim_opt.r; %compartment radius
 %% Initialise compartments
 % sim_data = resex_mc_comptmt_init(opt); %generate initial positions and get substrate extent
@@ -21,11 +21,10 @@ sim_data = resex_mc_comptmt_init_tight_packing(opt);
 states_old = ones(N1+N2,1);  %initial states of intracellular spins (at time 0)
 states_old(N1+1:N1+N2) = states_old(N1+1:N1+N2)*2; %initial states of extracellular spins
 sim_data.states_old = states_old;
-sigma_1 = sqrt(2*D_1*sim_dt); %standard dev of steps in intracellular
-sigma_2 = sqrt(2*D_2*sim_dt); %standard dev of steps in extracellular
-dr.sigma_1 = sigma_1; %pack parameters for simulation engine
-dr.sigma_2 = sigma_2;
-
+dr_1 = sqrt(2*n_dim*D_1*sim_dt); %jump length in intracellular
+dr_2 = sqrt(2*n_dim*D_2*sim_dt); %jump length in extracellular
+dr.dr_1 = dr_1; %pack parameters for simulation engine
+dr.dr_2 = dr_2;
 sim_data.dr = dr;
 
 %% Prepare for simulation visualisation

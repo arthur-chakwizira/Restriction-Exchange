@@ -24,14 +24,14 @@ opt = resex_mc_exp_opt(); %experimental options
 
 
 % RUN simulation-----------------------
-key = "two_exchanging_pools";
+key = "two_non_exchanging_comp";
 base_folder = "/Users/arthur/Documents/LUND_UNIVERSITY/PHD/PAPER_3/v4/TRAJECTORIES/";
 r_fn = base_folder + key;
 
-% % opt.tmp.d = 10e-6;
-% % opt.tmp.k = 0;
-% % opt = resex_mc_sim_opt(opt, "two_exchanging_compartments"); %Simulation options
-% % resex_mc_r_save(r_fn, opt)
+opt.tmp.d = 20e-6;
+opt.tmp.k = 0;
+opt = resex_mc_sim_opt(opt, "two_exchanging_compartments"); %Simulation options
+resex_mc_r_save(r_fn, opt)
 
 % r_fn = 'one_gaussian_pool';
 % opt = resex_mc_sim_opt(opt, "one_gaussian_pool"); 
@@ -51,5 +51,5 @@ r_fn = base_folder + key;
 % resex_mc_two_exchanging_pools_r_save(r_fn, opt)
 
 % r_fn = 'two_exchanging_pools'; %'two_exchanging_pools';
-opt = resex_mc_sim_opt(opt, "two_exchanging_pools"); 
-resex_mc_two_exchanging_pools_r_save(r_fn, opt)
+% opt = resex_mc_sim_opt(opt, "two_exchanging_pools"); 
+% resex_mc_two_exchanging_pools_r_save(r_fn, opt)

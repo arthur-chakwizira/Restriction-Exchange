@@ -18,10 +18,10 @@ D_2 = opt.sim_opt.D_2; %extracellular diffusivity
 states_old = ones(N1+N2,1);  %initial states of intracellular spins (at time 0)
 states_old(N1+1:N1+N2) = states_old(N1+1:N1+N2)*2; %initial states of extracellular spins
 R_old = randn(N1+N2, 2);
-sigma_1 = sqrt(2*D_1*sim_dt); %standard dev of steps in intracellular
-sigma_2 = sqrt(2*D_2*sim_dt); %standard dev of steps in extracellular
-dr.sigma_1 = sigma_1; %pack parameters for simulation engine
-dr.sigma_2 = sigma_2;
+dr_1 = sqrt(2*n_dim*D_1*sim_dt); %standard dev of steps in intracellular
+dr_2 = sqrt(2*n_dim*D_2*sim_dt); %standard dev of steps in extracellular
+dr.dr_1 = dr_1; %pack parameters for simulation engine
+dr.dr_2 = dr_2;
 
 sim_data.dr = dr;
 sim_data.p_12 = opt.sim_opt.p_12;

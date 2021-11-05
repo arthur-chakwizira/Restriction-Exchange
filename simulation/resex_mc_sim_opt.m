@@ -8,10 +8,10 @@ if nargin < 1; opt.present = 1; end
 if opt.exp_opt.using_sim_data
     
     %general settings
-    opt.sim_opt.T = 500e-3; %total simulation time
-    opt.sim_opt.sim_dt = 1e-4; %simulation resolution
+    opt.sim_opt.T = 60e-3; %total simulation time
+    opt.sim_opt.sim_dt = 1e-3; %simulation resolution
     opt.sim_opt.do_avg = false; %average positions
-    opt.sim_opt.do_samp = true; %sample positions every millisecond
+    opt.sim_opt.do_samp = false; %sample positions every millisecond
     opt.sim_opt.avg_dt = 1e-3; %average/sample every millisecond;
     
     opt.sim_opt.loiter = 200;
@@ -29,7 +29,7 @@ if opt.exp_opt.using_sim_data
     %specific settings
     if strcmp(env, "two_exchanging_compartments")
         opt.sim_opt.D_1 = 1e-9; %intracellular diffusivity
-        opt.sim_opt.D_2 = 1e-9; %extracellular diffusivity
+        opt.sim_opt.D_2 = 2e-9; %extracellular diffusivity
         %these are not in SI units
         d = opt.tmp.d;
         k_in = opt.tmp.k;
@@ -41,8 +41,8 @@ if opt.exp_opt.using_sim_data
         k_12 = k_in*(1 - opt.sim_opt.f_1);
         k_21 = k_in*(opt.sim_opt.f_1);
         
-        opt.sim_opt.kappa_12 = resex_mc_get_kappa_from_k(d, D, k_12, "from_1_to_2");%resex_mc__fit_k_kappa(d, D, k_12); %permeability
-        opt.sim_opt.kappa_21 = resex_mc_get_kappa_from_k(d, D, k_21, "from_2_to_1");%resex_mc__fit_k_kappa(d, D, k_21); %permeability
+        opt.sim_opt.kappa_12 = 0;%0.3e-4;%resex_mc_get_kappa_from_k(d, D, k_12, "from_1_to_2");%resex_mc__fit_k_kappa(d, D, k_12); %permeability
+        opt.sim_opt.kappa_21 = 0;%0.7e-4;%resex_mc_get_kappa_from_k(d, D, k_21, "from_2_to_1");%resex_mc__fit_k_kappa(d, D, k_21); %permeability
         
         opt.sim_opt.r = (d/2); %intracellular radius
         
@@ -69,7 +69,7 @@ if opt.exp_opt.using_sim_data
     if strcmp(env, "two_exchanging_pools")
         opt.sim_opt.f_1 = 0.7;
         opt.sim_opt.f_2 = 1-opt.sim_opt.f_1;
-        opt.sim_opt.k = 200;
+        opt.sim_opt.k = 20;
 %         p_11 = @(t) opt.sim_opt.f_1 + opt.sim_opt.f_2*exp(-opt.sim_opt.k*t);
         p_12 = @(t) opt.sim_opt.f_2*(1 - exp(-opt.sim_opt.k*t));
 %         p_22 = @(t) opt.sim_opt.f_2 + sim_opt.f_1*exp(-opt.sim_opt.k*t);
