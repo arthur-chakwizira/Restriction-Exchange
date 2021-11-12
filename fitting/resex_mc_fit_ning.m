@@ -1,5 +1,5 @@
 function mfs = resex_mc_fit_ning(s_simulated, xps)
-%Fits unified full compartment model
+%Fits representatino from Ning et al. 2018
 
 unit_to_SI = [1e-9 1e-9 1 1 1e-6]; % D1, D2, f1, k, d
 
