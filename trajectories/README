@@ -1,8 +1,13 @@
 Trajectory files
-d_X_k_Y
+d_X_k_Y...
 X is the compartment diameter in micrometers
 Y is the exchange rate in /s
 Each trajectory file contains the structure "positions" with fields:
-  R (trajectory)
+  R (trajectory: N_particles x N_spatial_dimensions x N_time_points)
   opt (settings used for the simulation)
+  
+
+Example trajectories can be found at:
+
+https://lunduniversityo365-my.sharepoint.com/:f:/g/personal/ar2326ch_lu_se/ErxinHEYNUJMsgYac6xIY6cB_UJls1v0GT1mrzsJrerJCQ?e=h9rKTo
   
