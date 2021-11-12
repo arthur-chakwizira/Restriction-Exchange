@@ -13,7 +13,9 @@ else
     catch
         using_sim_data = true;
     end
+    exp_opt = opt.exp_opt;
     clear opt
+    warning off
     tmp = load(r_fn, 'opt');
     try opt = tmp.opt;
     catch
@@ -25,7 +27,8 @@ else
             error("Could not find options structure in trajectory file. Aborting...")
         end
     end
-    opt.exp_opt.using_sim_data = using_sim_data;
+    exp_opt.using_sim_data = using_sim_data;
+    opt.exp_opt = exp_opt;
 end
 
 

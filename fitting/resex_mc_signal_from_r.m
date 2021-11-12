@@ -41,7 +41,7 @@ signal = zeros(xps.n, 1);
 
 wf_counter = 0;
 period = numel(bvec);
-myfig;
+axs = myfig(1,2);
 for c_n = 1:xps.n %for each waveform
         tmp_wf= gwf{c_n};
         %resample if needed
@@ -69,19 +69,26 @@ for c_n = 1:xps.n %for each waveform
             where = (c_n-period+1:c_n);
             tmp_b = b(where);
             tmp_sig = signal(where);
-            plt = plot(tmp_b/1e9, log(tmp_sig), 'o');
+            plt = plot(axs{1}, tmp_b/1e9, log(tmp_sig), 'o');
             set(plt, 'MarkerFaceColor', plt.Color)
             tmp_b_fine = linspace(min(tmp_b), max(tmp_b));
             tmp_sig_fine = interp1(tmp_b, log(tmp_sig), tmp_b_fine, 'pchip');
-            plot(tmp_b_fine/1e9, tmp_sig_fine, '--', 'Color', plt.Color,...
+            plot(axs{1}, tmp_b_fine/1e9, tmp_sig_fine, '--', 'Color', plt.Color,...
                 'HandleVisibility', 'off')
+            %also show gwf
+            t = 0:numel(tmp_wf)-1;
+            fill(axs{2}, t*1e3, tmp_wf*1e3, plt.Color, 'FaceAlpha', 0.3)
         end
 end
 
-% legend(array2strings(1:wf_counter))
-% xlabel('b [ms/\mum^2]')
-% ylabel('log(Signal)')
-title('Simulated signals ')
+legend(axs{1}, array2strings(1:wf_counter))
+xlabel(axs{1}, 'b [ms/\mum^2]')
+ylabel(axs{1}, 'log(Signal)')
+title(axs{1}, 'Simulated signals ')
 
+legend(axs{2}, array2strings(1:wf_counter))
+xlabel(axs{2}, 'time [ms]')
+ylabel(axs{2}, 'g [mT/m]')
+title(axs{2}, 'Gradient waveforms ')
 
 end
