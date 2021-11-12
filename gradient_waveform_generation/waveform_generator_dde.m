@@ -1,4 +1,5 @@
 %waveform_generator_for_gamma_vomega_dde
+%Generates DDE waveforms
 
 clc
 close all
