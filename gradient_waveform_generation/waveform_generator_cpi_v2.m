@@ -1,5 +1,5 @@
 %
-%FWF waveform generator
+%FWF waveform generator using random sampling with control point interpolation
 
 tic
 close all
