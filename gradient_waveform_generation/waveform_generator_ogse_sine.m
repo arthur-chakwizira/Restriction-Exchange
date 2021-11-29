@@ -114,7 +114,7 @@ end
 
 
 
-% save('/Users/arthur/Documents/LUND_UNIVERSITY/PHD/SIMULATION_CODE/cpi/ogse_landscape_b5.mat', 'wfs','qs','Ns','b_values','bmax', 'wps', 'gammas', 'vomegas', 'TEs')
+save('ogse_sine_gwf_example.mat', 'wfs','qs','Ns','b_values','bmax', 'wps', 'gammas', 'vomegas', 'TEs')
 
 
 %
