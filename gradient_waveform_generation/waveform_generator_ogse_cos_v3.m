@@ -133,7 +133,7 @@ end
 
 
 
-% save('/Users/arthur/Documents/LUND_UNIVERSITY/PHD/SIMULATION_CODE/cpi/ogse_cos_landscape_b5_v3.mat', 'wfs','qs','Ns','b_values','bmax', 'wps', 'gammas', 'vomegas', 'TEs')
+save('ogse_cos_gwf_example.mat', 'wfs','qs','Ns','b_values','bmax', 'wps', 'gammas', 'vomegas', 'TEs')
 
 
 %
