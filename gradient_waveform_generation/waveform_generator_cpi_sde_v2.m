@@ -152,8 +152,8 @@ TEs(garbage) = [];
 ef(garbage) = [];
 
 
-% % save('/Users/arthur/Documents/LUND_UNIVERSITY/PHD/SIMULATION_CODE/cpi/try_optimise_sde.mat', ...
-%     'wfs','qs','Ns','b_values','bmax', 'wps', 'gammas', 'vomegas', 'TEs', 'ef')
+save('sde_gwf_example.mat', ...
+    'wfs','qs','Ns','b_values','bmax', 'wps', 'gammas', 'vomegas', 'TEs', 'ef')
 
 
 %
