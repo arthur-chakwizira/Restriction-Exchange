@@ -1,6 +1,5 @@
 %waveform_generator_for_gamma_vomega_sde
 %adding efficiency constraint
-%Also trying to limit power to low frequencies
 
 tic
 close all
