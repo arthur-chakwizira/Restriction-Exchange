@@ -112,7 +112,7 @@ for c_wf = 1:Nwfs
     disp(strcat('Generated :', num2str(c_wf), ' of :', num2str(Nwfs)))
 end
 
-% save('/Users/arthur/Documents/LUND_UNIVERSITY/PHD/SIMULATION_CODE/cpi/dde_landscape_b5.mat', 'wfs','qs','Ns','b_values','bmax', 'wps', 'gammas', 'vomegas', 'TEs', 'ef')
+save('dde_gwf_example.mat', 'wfs','qs','Ns','b_values','bmax', 'wps', 'gammas', 'vomegas', 'TEs', 'ef')
 
 
 %
